@@ -5,3 +5,4 @@ Base de datos de control de pacientes.
 * Instalar Python
 * Instalar Flask
 * Instalar Flask_cors
+* Instalar Pymysql
