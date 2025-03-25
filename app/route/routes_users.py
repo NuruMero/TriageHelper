@@ -16,7 +16,7 @@ def index():
     print(app.url_map)
     pacientes = connection.getAllPatients()
     print(pacientes)
-    return render_template('example.html', PageTitle="TriageHelper", vble_pacientes=pacientes)
+    return render_template('example2.html', PageTitle="TriageHelper", vble_pacientes=pacientes)
 
 # Rutas de la API de usuarios
 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<!-- <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo"> -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {{PageTitle}} </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Dr. Pedro Jiménez Díaz</h1>
+            <h3>Traumatología</h3>
+        </div>
+
+        <div class="patient-list">
+            <div class="controls">
+                <h2>Lista de Pacientes</h2>
+                <button id="sortButton">Ordenar por Gravedad</button>
+            </div>
+            <div id="patientsContainer">
+                {% for paciente in vble_paciente %}
+                <div class="patient-item" data-severity="{{ paciente.gravedad_ingreso }}">
+                    <div>
+                        <h3>{{ paciente.nombre }}</h3>
+                        <p>{{ paciente.motivo_ingreso }} - 
+                           {% if paciente.ingresado_actualmente %}Ingresado{% else %}Alta médica{% endif %}</p>
+                    </div>
+                    <div class="severity">
+                        Gravedad {{ paciente.gravedad_ingreso }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
