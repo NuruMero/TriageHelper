@@ -17,4 +17,19 @@ except Exception as e:
 
 # Confirmar login
 def login(credentials):
-    return
+    cursor = db.cursor()
+    cursor.execute(f"SELECT dni FROM doctor WHERE dni = '{credentials.dni}' AND WHERE contrasenya = {credentials.password()}")
+    result = cursor.fetchall()
+    cursor.close()
+    if result:
+        return result
+    else:
+        return None
+    
+# Listar pacientes
+def getAllPatients():
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM paciente")
+    pacientes = cursor.fetchall()
+    cursor.close()
+    return pacientes

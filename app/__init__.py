@@ -5,5 +5,3 @@ app = Flask(__name__)
 CORS(app)
 
 from app.route import routes_login, routes_users
-
-from app.db import connection
