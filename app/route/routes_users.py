@@ -6,6 +6,10 @@ import app.constants as constants
 # TODO Inicia sesión (datos de prueba)
 user = connection.login(constants.usernamePrueba, constants.passwordPrueba)[0]
 
+def logout():
+    user = None
+    return
+
 # Rutas de API generales
 @app.before_request
 def before():
@@ -26,5 +30,5 @@ def index():
 
 @app.route('/pacientes')
 def mostrar_pacientes():
-    pacientes = connection.getAllPatientsByDoctor()
+    pacientes = connection.getAllPatientsByDoctor(user[0])
     return render_template('example.html', vble_pacientes=pacientes)

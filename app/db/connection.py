@@ -25,11 +25,27 @@ def login(user, password):
         return result
     else:
         return None
-    
-# Listar pacientes
+
+# Listar pacientes según doctor
 def getAllPatientsByDoctor(doctorDNI):
     cursor = db.cursor()
     cursor.execute(f"SELECT * FROM paciente WHERE doctor_asignado = '{doctorDNI}'")
     pacientes = cursor.fetchall()
     cursor.close()
     return pacientes
+
+# Búsqueda de pacientes según doctor y motivo de ingreso
+def getPatientsByDoctorAndIllness(doctorDNI, illnessLike):
+    cursor = db.cursor()
+    cursor.execute(f"SELECT * FROM paciente WHERE doctor_asignado = '{doctorDNI}' AND motivo_ingreso LIKE '%{illnessLike}%'")
+    pacientes = cursor.fetchall()
+    cursor.close()
+    return pacientes
+
+# Eliminar paciente según DNI
+def deletePatient(patientDNI):
+    cursor = db.cursor()
+    cursor.execute(f"DELETE FROM paciente WHERE dni = '{patientDNI}'")
+    db.commit()
+    cursor.close()
+
