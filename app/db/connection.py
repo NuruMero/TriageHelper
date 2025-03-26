@@ -16,9 +16,9 @@ except Exception as e:
 # MÉTODOS DE ACCESO A DB
 
 # Confirmar login
-def login(credentials):
+def login(user, password):
     cursor = db.cursor()
-    cursor.execute(f"SELECT dni FROM doctor WHERE dni = '{credentials.dni}' AND WHERE contrasenya = {credentials.password()}")
+    cursor.execute(f"SELECT * FROM doctor WHERE dni = '{user}' AND contrasenya = '{password}'")
     result = cursor.fetchall()
     cursor.close()
     if result:
@@ -27,9 +27,9 @@ def login(credentials):
         return None
     
 # Listar pacientes
-def getAllPatients():
+def getAllPatientsByDoctor(doctorDNI):
     cursor = db.cursor()
-    cursor.execute("SELECT * FROM paciente")
+    cursor.execute(f"SELECT * FROM paciente WHERE doctor_asignado = '{doctorDNI}'")
     pacientes = cursor.fetchall()
     cursor.close()
     return pacientes
