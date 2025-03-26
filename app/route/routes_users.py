@@ -1,6 +1,10 @@
 from app import app
 from flask import Flask, render_template, request
 from app.db import connection
+import app.constants as constants
+
+# TODO Inicia sesión (datos de prueba)
+user = connection.login(constants.usernamePrueba, constants.passwordPrueba)[0]
 
 # Rutas de API generales
 @app.before_request
@@ -14,13 +18,13 @@ def notFound(e):
 @app.route("/")
 def index():
     print(app.url_map)
-    pacientes = connection.getAllPatients()
-    print(pacientes)
+    pacientes = connection.getAllPatientsByDoctor(user[0])
     return render_template('example2.html', PageTitle="TriageHelper", vble_pacientes=pacientes)
+
 
 # Rutas de la API de usuarios
 
 @app.route('/pacientes')
 def mostrar_pacientes():
-    pacientes = connection.getAllPatients()
+    pacientes = connection.getAllPatientsByDoctor()
     return render_template('example.html', vble_pacientes=pacientes)
