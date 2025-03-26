@@ -6,10 +6,14 @@ import app.constants as constants
 # TODO Inicia sesión (datos de prueba)
 user = connection.login(constants.usernamePrueba, constants.passwordPrueba)[0]
 
-def logout():
-    user = None
-    return
+# def logout():
+    # user = None
+    # return
 
+@app.route("/login")
+def login():
+    return render_template("login1.html")
+    
 # Rutas de API generales
 @app.before_request
 def before():

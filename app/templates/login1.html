@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso TriageHelper</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <img src="{{ url_for('static', filename='images/TriageHelper_logoprincipal.jpg') }}" alt="Logo del Sistema" class="login-logo">
+            <p>Acceso exclusivo para personal autorizado</p>
+        </div>
+        
+
+        <div class="login-footer">
+            <p>¿Problemas para acceder? Contacte al <a href="sofiafernandezblasco@gmail.com">departamento de TI</a></p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+</body>
+</html>
