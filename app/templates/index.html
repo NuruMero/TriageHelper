@@ -18,6 +18,25 @@
                 </div>
             </div>
 
+            <div class="patient-details">
+                <div class="details-header">
+                    <h2>Detalles del Paciente</h2>
+                </div>
+                <div id="patientInfo">
+                    <div class="info-content">
+                        <!-- Los detalles se cargarán dinámicamente -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Columna Derecha -->
+        <div class="right-column">
+            <div class="search-container">
+                <input type="text" id="symptomSearch" placeholder="Buscar por síntomas...">
+                <button class="search-button">Buscar</button>
+            </div>
+            
             <div class="patient-list">
                 <div class="controls">
                     <h2>Lista de Pacientes</h2>
@@ -40,25 +59,6 @@
                     {% else %}
                         <p>No hay pacientes disponibles.</p>
                     {% endif %}
-                </div>
-            </div>
-        </div>
-
-        <!-- Columna Derecha -->
-        <div class="right-column">
-            <div class="search-container">
-                <input type="text" id="symptomSearch" placeholder="Buscar por síntomas...">
-                <button class="search-button">Buscar</button>
-            </div>
-            
-            <div class="patient-details">
-                <div class="details-header">
-                    <h2>Detalles del Paciente</h2>
-                </div>
-                <div id="patientInfo">
-                    <div class="info-content">
-                        <!-- Los detalles se cargarán dinámicamente -->
-                    </div>
                 </div>
             </div>
         </div>
