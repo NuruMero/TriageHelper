@@ -69,7 +69,6 @@ body {
     padding: 5px 10px;
     border-radius: 15px;
     font-weight: bold;
-    background-color: #ffc107;
     color: #343a40;
 }
 
@@ -178,5 +177,44 @@ button:hover {
 .header-text h1,
 .header-text h3 {
     margin: 0;
-    margin-bottom: 10px; /* Ajusta el valor según el espacio que desees */
+    margin-bottom: 20px; /* Ajusta el valor según el espacio que desees */
+}
+
+
+.patient-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* .severity {
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+    color: white; /* Texto blanco para mejor contraste
+} */
+
+.severity-1 {
+    background-color: #7CFC00; /* Verde para gravedad 1 */
+}
+
+.severity-2 {
+    background-color: #FFD700; /* Amarillo para gravedad 2 */
+}
+
+.severity-3 {
+    background-color: #FFA500; /* Naranja para gravedad 3 */
+}
+
+.severity-4 {
+    background-color: #f98537; /* Rojo tomate para gravedad 4 */
+}
+
+.severity-5 {
+    color: white;
+    background-color: #FF0000; /* Rojo intenso para gravedad 5 */
 }
