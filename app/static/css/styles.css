@@ -5,12 +5,20 @@ body {
     color: #2c3e50;
 }
 
-.container {
+/* .container {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
+} */
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    max-width: 1400px;
+    padding: 20px;
 }
 
 .header {
@@ -77,4 +85,87 @@ button {
 
 button:hover {
     background-color: #0056b3;
+}
+
+.left-column, .right-column {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+}
+
+.search-container {
+    margin-bottom: 25px;
+    display: flex;
+    gap: 10px;
+}
+
+#symptomSearch {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.search-button {
+    padding: 12px 24px;
+    background-color: #28a745;
+    color: white;
+}
+
+.search-button:hover {
+    background-color: #218838;
+}
+
+.patient-details {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.details-header {
+    border-bottom: 2px solid #007bff;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.info-placeholder {
+    color: #6c757d;
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+}
+
+.info-content {
+    display: none;
+}
+
+@media (max-width: 1200px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+    
+    .left-column, .right-column {
+        height: auto;
+        min-height: 500px;
+    }
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 200px; 
+    height: auto;
+    margin-right: 15px; /* Añade espacio entre el logo y el texto */
+}
+
+.header-text h1,
+.header-text h3 {
+    margin: 0;
 }

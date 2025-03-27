@@ -3,57 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> bb.dd </title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>TriageHelper</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <div class="dashboard-container">
-        <header>
-            <div class="logo-container">
-                <img src="{{ url_for('static', filename='fotos/TriageHelper.banner.jpg') }}" alt="Logotipo" class="logo">
-            </div>
-            <div class="doctor-info">
-                <h3>Bienvenido, Dr. {{ doctor_name }}</h3>
-                <p>Sesión Iniciada</p>
-            </div>
-        </header>
-
-        <div class="main-content">
-            <div class="sorting-container">
-                <h4>Ordenar pacientes por gravedad</h4>
-                <select>
-                    <option value="leve">Leve</option>
-                    <option value="moderado">Moderado</option>
-                    <option value="grave">Grave</option>
-                </select>
+    <div class="container">
+        <!-- Columna Izquierda -->
+        <div class="left-column">
+            <div class="header-content">
+                <img src="{{ url_for('static', filename='images/TriageHelper_logoprincipal.jpg') }}" alt="Logo" class="logo">
+                <div class="header-text">
+                    <h1>Dr. Pedro Jiménez Díaz</h1>
+                    <h3>Traumatología</h3>
+                </div>
             </div>
 
-            <div class="patient-form-container">
-                <h4>Agregar nuevo paciente</h4>
-                <form action="/add_patient" method="POST">
-                    <input type="text" name="name" placeholder="Nombre del paciente" required>
-                    <input type="number" name="id" placeholder="ID del paciente" required>
-                    <input type="text" name="symptoms" placeholder="Síntomas" required>
-                    <button type="submit">Agregar Paciente</button>
-                </form>
+            <div class="patient-list">
+                <div class="controls">
+                    <h2>Lista de Pacientes</h2>
+                    <button id="sortButton">Ordenar por Gravedad</button>
+                </div>
+                <div id="patientsContainer">
+                    {% for paciente in vble_paciente %}
+                    <div class="patient-item" data-severity="{{ paciente.gravedad_ingreso }}">
+                        <div>
+                            <h3>{{ paciente.nombre }}</h3>
+                            <p>{{ paciente.motivo_ingreso }} - 
+                               {% if paciente.ingresado_actualmente %}Ingresado{% else %}Alta médica{% endif %}</p>
+                        </div>
+                        <div class="severity">
+                            Gravedad {{ paciente.gravedad_ingreso }}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
+        </div>
 
-            <div class="symptom-search-container">
-                <h4>Buscar síntomas</h4>
-                <input type="text" id="symptom-search" placeholder="Buscar síntomas...">
-                <ul id="symptom-results"></ul>
+        <!-- Columna Derecha -->
+        <div class="right-column">
+            <div class="search-container">
+                <input type="text" id="symptomSearch" placeholder="Buscar por síntomas...">
+                <button class="search-button">Buscar</button>
             </div>
-
-            <div class="patients-list">
-                <h4>Lista de pacientes</h4>
-                <ul>
-                    <li>Paciente 1 - Gravedad: Leve</li>
-                    <li>Paciente 2 - Gravedad: Moderado</li>
-                    <li>Paciente 3 - Gravedad: Grave</li>
-                </ul>
+            
+            <div class="patient-details">
+                <div class="details-header">
+                    <h2>Detalles del Paciente</h2>
+                </div>
+                <div id="patientInfo">
+                    <p class="info-placeholder">Seleccione un paciente de la lista</p>
+                    <div class="info-content">
+                        <!-- Los detalles se cargarán dinámicamente -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </body>
 </html>
-
