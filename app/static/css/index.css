@@ -43,8 +43,16 @@ button {
     cursor: pointer;
 }
 
+.errorButton {
+    background-color: #b9180d;
+}
+
 button:hover {
-    background-color:#2e41eb ;
+    background-color:#212fae ;
+}
+
+.errorButton:hover {
+    background-color:#891209 ;
 }
 
 .flash-messages {

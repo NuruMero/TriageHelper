@@ -87,6 +87,16 @@ button:hover {
     background-color: #0056b3;
 }
 
+.errorButton {
+    padding: 12px 24px;
+    margin: 12px;
+    background-color: #b9180d;
+}
+
+.errorButton:hover {
+    background-color:#891209 ;
+}
+
 .left-column, .right-column {
     background-color: white;
     border-radius: 10px;

@@ -6,10 +6,11 @@ import app.constants as constants
 # TODO Inicia sesión (datos de prueba)
 user = None
 
+@app.route('/logout', methods=['GET', 'POST'])
 def logout():
     global user 
     user = None
-    return
+    return redirect(url_for('index'))
     
 # Rutas de API generales
 @app.before_request

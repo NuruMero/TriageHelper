@@ -16,6 +16,11 @@
                     <h1>Dr. {{ nombre_doctor }}</h1>
                     <h3>{{ especialidad }}</h3>
                 </div>
+                <div class="header-text">
+                    <form action="/logout" method="post">
+                        <button class="errorButton" onclick="logout()">Cerrar Sesión</button>
+                    </form>
+                </div>
             </div>
 
             <div class="patient-details">
