@@ -13,8 +13,8 @@
             <div class="header-content">
                 <img src="{{ url_for('static', filename='images/TriageHelper_logoprincipal.jpg') }}" alt="Logo" class="logo">
                 <div class="header-text">
-                    <h1>Dr. Pedro Jiménez Díaz</h1>
-                    <h3>Traumatología</h3>
+                    <h1>Dr. {{ nombre_doctor }}</h1>
+                    <h3>{{ especialidad }}</h3>
                 </div>
             </div>
 
@@ -52,7 +52,6 @@
                     <h2>Detalles del Paciente</h2>
                 </div>
                 <div id="patientInfo">
-                    <p class="info-placeholder">Seleccione un paciente de la lista</p>
                     <div class="info-content">
                         <!-- Los detalles se cargarán dinámicamente -->
                     </div>

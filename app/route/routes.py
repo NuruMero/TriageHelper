@@ -29,7 +29,8 @@ def index():
         return render_template('login1.html')
     else:
         pacientes = connection.getAllPatientsByDoctor(user[0][0])
-        return render_template('index.html', PageTitle="TriageHelper", vble_pacientes=pacientes)
+        nombre_doctor, especialidad = connection.getDataDoctor(user[0][0])
+        return render_template('index.html', PageTitle="TriageHelper", vble_pacientes=pacientes, nombre_doctor=nombre_doctor, especialidad=especialidad)
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
