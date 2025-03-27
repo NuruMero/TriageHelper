@@ -36,6 +36,13 @@ def getAllPatientsByDoctor(doctorDNI):
     cursor.close()
     return pacientes
 
+def getPatientsByDNI(searchDNI, doctorDNI):
+    cursor = db.cursor()
+    cursor.execute(f"SELECT * FROM paciente WHERE doctor_asignado = '{doctorDNI} AND dni = '{searchDNI}'")
+    pacientes = cursor.fetchall
+    cursor.close()
+    return pacientes
+
 def getDataDoctor(doctorDNI):
     cursor = db.cursor()
     cursor.execute(f"SELECT nombre, especialidad FROM doctor WHERE dni = '{doctorDNI}'")

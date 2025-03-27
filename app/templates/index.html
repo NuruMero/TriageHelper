@@ -39,7 +39,7 @@
         <div class="right-column">
             <div class="search-container">
                 <form method="get" action="/">
-                    <input type="text" id="symptomSearch" name="search" placeholder="Buscar pacientes por DNI..." value="{{ request.args.get('search') }}">
+                    <input type="text" id="symptomSearch" name="search" placeholder="Buscar pacientes por DNI..." value="{{ request.args.get('search','') }}">
                     <button class="search-button" type="submit">Buscar</button>
                 </form>
             </div>
