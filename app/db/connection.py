@@ -19,7 +19,7 @@ except Exception as e:
 def validation_login(user, password):
     cursor = db.cursor()
     cursor.execute(f"SELECT * FROM doctor WHERE dni = '{user}' AND contrasenya = '{password}'")
-    result = cursor.fetchall()
+    result = cursor.fetchone()
     cursor.close()
     if result:
         print("Usuario encontrado en la base de datos")

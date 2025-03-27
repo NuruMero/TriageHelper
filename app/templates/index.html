@@ -24,18 +24,22 @@
                     <button id="sortButton">Ordenar por Gravedad</button>
                 </div>
                 <div id="patientsContainer">
-                    {% for paciente in vble_paciente %}
-                    <div class="patient-item" data-severity="{{ paciente.gravedad_ingreso }}">
-                        <div>
-                            <h3>{{ paciente.nombre }}</h3>
-                            <p>{{ paciente.motivo_ingreso }} - 
-                               {% if paciente.ingresado_actualmente %}Ingresado{% else %}Alta médica{% endif %}</p>
+                    {% if vble_pacientes %}
+                        {% for paciente in vble_pacientes %}
+                        <div class="patient-item" data-severity="{{ paciente[6] }}">
+                            <div>
+                                <h3>{{ paciente[1] }}</h3>
+                                <p>{{ paciente[5] }} - 
+                                   {% if paciente[4] == 1 %}Ingresado{% else %}Alta médica{% endif %}</p>
+                            </div>
+                            <div class="severity">
+                                Gravedad {{ paciente[6] }}
+                            </div>
                         </div>
-                        <div class="severity">
-                            Gravedad {{ paciente.gravedad_ingreso }}
-                        </div>
-                    </div>
-                    {% endfor %}
+                        {% endfor %}
+                    {% else %}
+                        <p>No hay pacientes disponibles.</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
