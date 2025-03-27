@@ -168,4 +168,5 @@ button:hover {
 .header-text h1,
 .header-text h3 {
     margin: 0;
+    margin-bottom: 10px; /* Ajusta el valor según el espacio que desees */
 }
