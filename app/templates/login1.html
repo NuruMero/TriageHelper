@@ -17,6 +17,12 @@
         
         <!-- Formulario de Login -->
         <form action="/login" method="POST" class="login-form">
+            {% if errorMsg %}
+                <div class="alert-error">
+                    {{ errorMsg }}
+                </div>
+            {% endif %}
+            
             <div class="form-group">
                 <label for="username"> <i class="fas fa-user"></i> Usuario:</label>
                 <input type="text" id="username" name="username" class="form-control" placeholder="Ingrese su DNI/NIE" required>
