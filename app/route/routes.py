@@ -34,8 +34,10 @@ def index():
             pacientes = connection.getPatientsByDNI(paciente_search, user[0])
         else:    
             pacientes = connection.getAllPatientsByDoctor(user[0])
+        
         print(pacientes)
         nombre_doctor, especialidad = connection.getDataDoctor(user[0])
+
         return render_template('index.html', PageTitle="TriageHelper", vble_pacientes=pacientes, nombre_doctor=nombre_doctor, especialidad=especialidad)
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -58,3 +60,14 @@ def login():
     return render_template("login1.html")
 
 # Rutas de la API de usuarios
+@app.route('/patient/<int:patient_id>', methods=['GET', 'POST'])
+def patient_details(patient_id):
+    global user
+    print("Entro en route patient 1")
+    paciente = connection.getPatientsByDNI(patient_id, user[0])[0]
+    print("Entro en route patient 2")
+    if paciente:
+        print(paciente)
+        return render_template('index.html', vble_pacientes=connection.getAllPatientsByDoctor(user[0]), paciente_seleccionado=paciente)
+    else:
+        return "Paciente no encontrado", 404

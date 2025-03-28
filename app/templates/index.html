@@ -28,9 +28,18 @@
                     <h2>Detalles del Paciente</h2>
                 </div>
                 <div id="patientInfo">
+                    {% if paciente_seleccionado %}
                     <div class="info-content">
-                        <!-- Los detalles se cargarán dinámicamente -->
+                        <h3>{{ paciente_seleccionado[1] }}</h3>
+                        <p>DNI: {{ paciente_seleccionado[2] }}</p>
+                        <p>Sintoma: {{ paciente_seleccionado[3] }}</p>
+                        <p>Estado: {{ paciente_seleccionado[4] }}</p>
+                        <p>Fecha de Ingreso: {{ paciente_seleccionado[5] }}</p>
+                        <p>Gravedad: {{ paciente_seleccionado[6] }}</p>
                     </div>
+                    {% else %}
+                    <p>Selecciona un paciente para ver los detalles.</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -53,14 +62,17 @@
                     {% if vble_pacientes %}
                         {% for paciente in vble_pacientes %}
                         <div class="patient-item" data-severity="{{ paciente[6] }}">
-                            <div>
-                                <h3>{{ paciente[1] }}</h3>
-                                <p>{{ paciente[5] }} - 
-                                   {% if paciente[4] == 1 %}Ingresado{% else %}Alta médica{% endif %}</p>
-                            </div>
-                            <div class="severity severity-{{ paciente[6] }}">
-                                Gravedad {{ paciente[6] }}
-                            </div>
+                            <form action="/patient/{{ paciente[0] }}" method="get">
+                                <div>
+                                    <h3>{{ paciente[1] }}</h3>
+                                    <p>{{ paciente[5] }} - 
+                                    {% if paciente[4] == 1 %}Ingresado{% else %}Alta médica{% endif %}</p>
+                                </div>
+                                <div class="severity severity-{{ paciente[6] }}">
+                                    Gravedad {{ paciente[6] }}
+                                </div>
+                                <button type="submit">Ver Detalles</button>
+                            </form>
                         </div>
                         {% endfor %}
                     {% else %}
