@@ -1,8 +1,9 @@
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
     margin: 20px;
-    background-color: #f0f8ff;
-    color: #2c3e50;
+    background-color: #f4fffb;
+    color: #0c2335;
 }
 
 /* .container {
@@ -16,27 +17,15 @@ body {
 .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    gap: 40px;
     max-width: 1400px;
-    padding: 20px;
+    padding: 30px;
 }
 
 .header {
     text-align: center;
     padding: 20px;
-    background-color: #e6f3ff;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
-.patient-list {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.controls {
+    background-color: #f4fffb;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -61,8 +50,8 @@ body {
 }
 
 .patient-item.selected {
-    background-color: #cce5ff;
-    border-left: 4px solid #007bff;
+    background-color: #f4fffb;
+    border-left: 4px solid #f4fffb;
 }
 
 .severity {
@@ -73,27 +62,32 @@ body {
 }
 
 button {
-    padding: 8px 16px;
-    background-color: #007bff;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: #0174cd;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #0174cd;
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
 }
 
 .errorButton {
     padding: 12px 24px;
     margin: 12px;
-    background-color: #b9180d;
+    background-color: #dc3545;
 }
 
 .errorButton:hover {
-    background-color:#891209 ;
+    background-color:#dc3545 ;
 }
 
 .left-column, .right-column {
@@ -143,7 +137,7 @@ button:hover {
 
 .info-placeholder {
     color: #6c757d;
-    font-style: italic;
+    font-style:'Poppins', sans-serif;
     text-align: center;
     padding: 20px;
 }
@@ -166,6 +160,7 @@ button:hover {
 .header-content {
     display: flex;
     align-items: center;
+    background-color: #f4fffb;
 }
 
 .logo {
@@ -216,5 +211,5 @@ button:hover {
 
 .severity-5 {
     color: white;
-    background-color: #FF0000; /* Rojo intenso para gravedad 5 */
+    background-color: #dc3545; /* Rojo intenso para gravedad 5 */
 }

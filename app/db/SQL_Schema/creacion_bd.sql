@@ -1,4 +1,4 @@
--- Active: 1741854638213@@127.0.0.1@3306@hospital
+-- Active: 1742812326128@@127.0.0.1@3306@hospitalin
 CREATE DATABASE hospital;
 
 USE hospital; 
