@@ -21,7 +21,7 @@ def before():
 def notFound(e):
     return render_template("404.html", PageTitle="Page Not Found")
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def index():
     print(app.url_map)
     global user
@@ -34,11 +34,41 @@ def index():
             pacientes = connection.getPatientsByDNI(paciente_search, user[0])
         else:    
             pacientes = connection.getAllPatientsByDoctor(user[0])
+
+
+        # @app.route('/patient', methods=['POST'])
+        # def patient_details():
+        #     global user
+        #     patient_id = request.form.get('patient_id')
+        #     print("Entro en patient_details")
+        #     print(patient_id)
+            
+        #     if patient_id:
+        #         # Obtener los detalles del paciente
+        #         paciente = connection.getPatientByDNI(patient_id)
+        #         print(f"paciente: {paciente}")
+        #         return render_template('index.html', PageTitle="TriageHelper", paciente_seleccionado=paciente)
+        #     else:
+        #         return "ID del paciente no proporcionado", 400
+
+        paciente_seleccionado = None
+        # Si el formulario se envió (POST), obtenemos el patient_id
+        if request.method == 'POST':
+            paciente_id = request.form.get('patient_id')
+            print(f"paciente_id: {paciente_id}")
+            if paciente_id:
+                paciente_seleccionado = connection.getPatientByDNI(paciente_id)  # Obtener los detalles del paciente seleccionado
         
         print(pacientes)
         nombre_doctor, especialidad = connection.getDataDoctor(user[0])
 
-        return render_template('index.html', PageTitle="TriageHelper", vble_pacientes=pacientes, nombre_doctor=nombre_doctor, especialidad=especialidad)
+        if paciente_seleccionado:
+            print(f"Se ha seleccionado un paciente: {paciente_seleccionado}")
+            return render_template('index.html', PageTitle="TriageHelper", vble_pacientes=pacientes, nombre_doctor=nombre_doctor, especialidad=especialidad, paciente_seleccionado=paciente_seleccionado)
+        else:
+            print("No hay paciente seleccionado")
+            return render_template('index.html', PageTitle="TriageHelper", vble_pacientes=pacientes, nombre_doctor=nombre_doctor, especialidad=especialidad)
+
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -58,16 +88,19 @@ def login():
         
     print("Mostrando pantalla de login")
     return render_template("login1.html")
+    
 
-# Rutas de la API de usuarios
-@app.route('/patient/<int:patient_id>', methods=['GET', 'POST'])
-def patient_details(patient_id):
-    global user
-    print("Entro en route patient 1")
-    paciente = connection.getPatientsByDNI(patient_id, user[0])[0]
-    print("Entro en route patient 2")
-    if paciente:
-        print(paciente)
-        return render_template('index.html', vble_pacientes=connection.getAllPatientsByDoctor(user[0]), paciente_seleccionado=paciente)
-    else:
-        return "Paciente no encontrado", 404
+# @app.route('/patient', methods=['POST'])
+# def patient_details():
+#     global user
+#     patient_id = request.form.get('patient_id')
+#     print("Entro en patient_details")
+#     print(patient_id)
+    
+#     if patient_id:
+#         # Obtener los detalles del paciente
+#         paciente = connection.getPatientByDNI(patient_id)
+#         print(f"paciente: {paciente}")
+#         return render_template('index.html', PageTitle="TriageHelper", paciente_seleccionado=paciente)
+#     else:
+#         return "ID del paciente no proporcionado", 400

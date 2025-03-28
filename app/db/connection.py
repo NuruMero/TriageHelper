@@ -58,7 +58,7 @@ def getDataDoctor(doctorDNI):
 # Búsqueda de paciente según su DNI
 def getPatientByDNI(pacienteDNI):
     cursor = db.cursor()
-    cursor.execute(f"SELECT * FROM paciente WHERE dni = {pacienteDNI}'")
+    cursor.execute(f"SELECT * FROM paciente WHERE dni = '{pacienteDNI}'")
     paciente = cursor.fetchone()
     cursor.close()
     return paciente
