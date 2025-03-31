@@ -33,11 +33,12 @@ body {
 }
 
 .patient-item {
+    display: flex;
+    flex-direction: row;
     padding: 15px;
     margin: 10px 0;
     background-color: #f8f9fa;
     border-radius: 5px;
-    cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
     justify-content: space-between;
@@ -49,13 +50,16 @@ body {
     transform: translateX(5px);
 }
 
-.patient-item.selected {
-    background-color: #f4fffb;
-    border-left: 4px solid #f4fffb;
+.patient-item-inner {
+    display: flex;
+    flex-direction: column;
 }
 
 .severity {
+    display: flex;
+    align-self: flex-end;
     padding: 5px 10px;
+    margin: 10px;
     border-radius: 15px;
     font-weight: bold;
     color: #343a40;
@@ -102,11 +106,17 @@ button:hover {
 .search-container {
     margin-bottom: 25px;
     display: flex;
+    flex:auto;
     gap: 10px;
+    align-items: flex-end;
+}
+
+.search-container form {
+    width: 100%;
 }
 
 #symptomSearch {
-    flex: 1;
+    width: 75%;
     padding: 12px;
     border: 1px solid #dee2e6;
     border-radius: 8px;

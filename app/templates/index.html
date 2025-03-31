@@ -57,24 +57,25 @@
             <div class="patient-list">
                 <div class="controls">
                     <h2>Lista de Pacientes</h2>
-                    <button id="sortButton">Ordenar por Gravedad</button>
                 </div>
                 <div id="patientsContainer">
                     {% if vble_pacientes %}
                         {% for paciente in vble_pacientes %}
                         <div class="patient-item" data-severity="{{ paciente[6] }}">
-                            <form action="/" method="POST">
-                                <div>
-                                    <h3>{{ paciente[1] }}</h3>
-                                    <p>{{ paciente[5] }} - 
-                                       {% if paciente[4] == 1 %}Ingresado{% else %}Alta médica{% endif %}</p>
-                                </div>
+                            <div class="patient-item-inner">
+                                <h3>{{ paciente[1] }}</h3>
+                                <label>{{ paciente[5] }} - 
+                                    {% if paciente[4] == 1 %}Ingresado{% else %}Alta médica{% endif %}</label>
+                            </div>
+                            <div class="patient-item-inner">
                                 <div class="severity severity-{{ paciente[6] }}">
-                                    Gravedad {{ paciente[6] }}
+                                    <label>Gravedad {{ paciente[6] }}</label>
                                 </div>
-                                <input type="hidden" name="patient_id" value="{{ paciente[0] }}">
-                                <button type="submit">Ver Detalles</button>
-                            </form>
+                                <form action="/" method="POST">
+                                    <input type="hidden" name="patient_id" value="{{ paciente[0] }}">
+                                    <button type="submit">Ver Detalles</button>
+                                </form>
+                            </div>
                         </div>
                         {% endfor %}
                     {% else %}

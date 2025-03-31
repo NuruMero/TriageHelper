@@ -31,7 +31,7 @@ def validation_login(user, password):
 # Listar pacientes según doctor
 def getAllPatientsByDoctor(doctorDNI):
     cursor = db.cursor()
-    cursor.execute(f"SELECT * FROM paciente WHERE doctor_asignado = '{doctorDNI}'")
+    cursor.execute(f"SELECT * FROM paciente WHERE doctor_asignado = '{doctorDNI}' ORDER BY gravedad_ingreso DESC")
     pacientes = cursor.fetchall()
     cursor.close()
     return pacientes
@@ -39,7 +39,7 @@ def getAllPatientsByDoctor(doctorDNI):
 def getPatientsByDNI(searchDNI, doctorDNI):
     cursor = db.cursor()
     try:
-        cursor.execute(f"SELECT * FROM paciente WHERE doctor_asignado = '{doctorDNI}' AND dni = '{searchDNI}'")        
+        cursor.execute(f"SELECT * FROM paciente WHERE doctor_asignado = '{doctorDNI}' AND dni LIKE '%{searchDNI}%' ORDER BY gravedad_ingreso DESC")        
         pacientes = cursor.fetchall()
     except Exception as e:
         print(f"Error en la consulta de búsqueda: {e}")
@@ -58,7 +58,7 @@ def getDataDoctor(doctorDNI):
 # Búsqueda de paciente según su DNI
 def getPatientByDNI(pacienteDNI):
     cursor = db.cursor()
-    cursor.execute(f"SELECT * FROM paciente WHERE dni = '{pacienteDNI}'")
+    cursor.execute(f"SELECT * FROM paciente WHERE dni = '{pacienteDNI}' ORDER BY gravedad_ingreso DESC")
     paciente = cursor.fetchone()
     cursor.close()
     return paciente
