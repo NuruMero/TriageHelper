@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso TriageHelper</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+
+    <style>
+        .login-logo {
+            width: 350px;
+            height: 350px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+        .login-header p {
+            margin: 3px 0;
+            font-size: 14px;
+        }
+        .login-form {
+            width: 100%;
+            max-width: 280px; 
+            padding: 10px 0;
+        }
+        .form-group {
+            margin-bottom: 8px;
+        }
+        .login-footer p {
+            margin: 3px 0;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <img src="{{ url_for('static', filename='images/TriageHelper_logoprincipal.jpg') }}" alt="Logo del Sistema" class="login-logo">
+            <p>Acceso exclusivo para personal autorizado</p>
+        </div>
+        
+        <!-- Formulario de Login -->
+        <form action="/login" method="POST" class="login-form">
+            {% if errorMsg %}
+                <div class="alert-error">
+                    {{ errorMsg }}
+                </div>
+            {% endif %}
+            
+            <div class="form-group">
+                <label for="username"> <i class="fas fa-user"></i> Usuario:</label>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Ingrese su DNI/NIE" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password"><i class="fas fa-lock"></i> Contraseña:</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Ingrese su contraseña" required>
+            </div>
+
+            <button type="submit" class="btn-login"><i class="fas fa-sign-in-alt"></i> Iniciar sesión</button>
+        </form>
+
+        <div class="login-footer">
+            <p>¿Problemas para acceder? Contacte al <a href="sofiafernandezblasco@gmail.com">departamento de TI</a></p>
+        </div>
+    </div>
+
+</body>
+</html>

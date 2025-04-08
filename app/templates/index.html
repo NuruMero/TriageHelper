@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TriageHelper</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Columna Izquierda -->
+        <div class="left-column">
+            <div class="header-content">
+                <img src="{{ url_for('static', filename='images/TriageHelper_logoprincipal.jpg') }}" alt="Logo" class="logo">
+                <div class="header-text">
+                    <h1>Dr. {{ nombre_doctor }}</h1>
+                    <h3>{{ especialidad }}</h3>
+                </div>
+                <div class="header-text">
+                    <form action="/logout" method="post">
+                        <button class="errorButton" onclick="logout()">Cerrar Sesión</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="patient-details">
+                <div class="details-header">
+                    <h2>Detalles del Paciente</h2>
+                </div>
+                <div id="patientInfo">
+                    {% if paciente_seleccionado %}
+                    <div class="info-content" style="display: {% if paciente_seleccionado %}block{% else %}none{% endif %};">
+                        <h3>{{ paciente_seleccionado[1] }}</h3>  <!-- Nombre del paciente -->
+                        <p>DNI: {{ paciente_seleccionado[0] }}</p>  <!-- DNI -->
+                        <p>Edad: {{ paciente_seleccionado[2] }} años</p>  <!-- Edad -->
+                        <p>Sintoma: {{ paciente_seleccionado[5] }}</p>  <!-- Sintoma -->
+                        <p>Estado: {% if paciente_seleccionado[4] == 1 %}Ingresado{% else %}Alta médica{% endif %}</p>  <!-- Estado -->
+                        <p>Gravedad: {{ paciente_seleccionado[6] }}</p>  <!-- Gravedad -->
+                        <p>Diagnóstico: {{ paciente_seleccionado[7] }}</p>  <!-- Diagnóstico -->
+                    </div>
+                    {% else %}
+                    <p>Selecciona un paciente para ver los detalles.</p>
+                    {% endif %}
+                </div>
+            </div>            
+        </div>
+
+        <!-- Columna Derecha -->
+        <div class="right-column">
+            <div class="search-container">
+                <form method="get" action="/">
+                    <input type="text" id="symptomSearch" name="search" placeholder="Buscar pacientes por DNI..." value="{{ request.args.get('search','') }}">
+                    <button class="search-button" type="submit">Buscar</button>
+                </form>
+            </div>
+            
+            <div class="patient-list">
+                <div class="controls">
+                    <h2>Lista de Pacientes</h2>
+                </div>
+                <div id="patientsContainer">
+                    {% if vble_pacientes %}
+                        {% for paciente in vble_pacientes %}
+                        <div class="patient-item" data-severity="{{ paciente[6] }}">
+                            <div class="patient-item-inner">
+                                <h3>{{ paciente[1] }}</h3>
+                                <label>{{ paciente[5] }} - 
+                                    {% if paciente[4] == 1 %}Ingresado{% else %}Alta médica{% endif %}</label>
+                            </div>
+                            <div class="patient-item-inner">
+                                <div class="severity severity-{{ paciente[6] }}">
+                                    <label>Gravedad {{ paciente[6] }}</label>
+                                </div>
+                                <form action="/" method="POST">
+                                    <input type="hidden" name="patient_id" value="{{ paciente[0] }}">
+                                    <button type="submit">Ver Detalles</button>
+                                </form>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>No hay pacientes disponibles.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
